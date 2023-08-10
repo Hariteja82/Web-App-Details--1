@@ -1,27 +1,29 @@
-HTTP/1.1 200 OK
-Content-Type: application/vnd.api+json
 
-{
-  "meta": {
-    "totalPages": 13
-  },
-  "data": [
-    {
-      "type": "articles",
-      "id": "3",
-      "attributes": {
-        "title": "JSON:API paints my bikeshed!",
-        "body": "The shortest article. Ever.",
-        "created": "2015-05-22T14:56:29.000Z",
-        "updated": "2015-05-22T14:56:28.000Z"
-      }
-    }
-  ],
-  "links": {
-    "self": "http://example.com/articles?page[number]=3&page[size]=1",
-    "first": "http://example.com/articles?page[number]=1&page[size]=1",
-    "prev": "http://example.com/articles?page[number]=2&page[size]=1",
-    "next": "http://example.com/articles?page[number]=4&page[size]=1",
-    "last": "http://example.com/articles?page[number]=13&page[size]=1"
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="style.css">
+	<title>Color Game</title>
+</head>
+<body>
+	<h1>Welcome To DevOps Training In Telugu Batch 20 & 21 By Sreeharsha Veerapalli</h1>
+	<h1>Ansible Playbook Testing With Tags</h1>
+	<div id="smallcont">
+		<div></div>
+		<div id="try1">Lets Play</div>
+	</div>
+	<div id="container">
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+		<div class="square"></div>
+	</div>
+	
+</body>
+<script type="text/javascript" src="scorekeeper.js"></script>
+</html>

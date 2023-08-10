@@ -1,36 +1,49 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: sreeharshav/rollingupdate:v3
-        ports:
-        - containerPort: 80
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: my-service
-spec:
-  selector:
-    app: nginx
-  ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 80
-      nodePort: 30007
-  type: NodePort
+pipeline {
+    environment {
+        registry = 'sreeharshav/devopsb17'
+        registryCredential = 'dockerhub_id'
+        dockerSwarmManager = '10.40.1.26:2375'
+        dockerhost = '10.40.1.26'
+        dockerImage = ''
+    }
+    agent any
+    stages {
+        stage('Cloning our Git') {
+            steps {
+                git 'https://github.com/mavrick202/dockertest1.git'
+            }
+        }
+        stage('Building our image') {
+            steps {
+                script {
+                    dockerImage = docker.build registry + ":v$BUILD_NUMBER"
+                }
+            }
+        }
+        stage('Push Image To DockerHUB') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+        stage('Cleaning up') {
+            steps {
+                sh "docker rmi $registry:v$BUILD_NUMBER"
+            }
+        }
+        stage('Deploying to Docker Swarm') {
+            steps {
+                sh "docker -H tcp://$dockerSwarmManager service rm testing1 || true"
+                sh "docker -H tcp://$dockerSwarmManager service create --name testing1 -p 8100:80 $registry:v$BUILD_NUMBER"
+            }
+        }
+        stage('Verifying The Deployment') {
+            steps {
+                sh 'curl http://$dockerhost:8100 || exit 1'
+                }
+        }
+    }
+}

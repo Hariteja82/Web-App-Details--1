@@ -1,29 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: sreeharshav/rollingupdate:v3
+        ports:
+        - containerPort: 80
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="style.css">
-	<title>Color Game</title>
-</head>
-<body>
-	<h1>Welcome To DevOps Training In Telugu Batch 20 & 21 By Sreeharsha Veerapalli</h1>
-	<h1>Ansible Playbook Testing With Tags</h1>
-	<div id="smallcont">
-		<div></div>
-		<div id="try1">Lets Play</div>
-	</div>
-	<div id="container">
-		<div class="square"></div>
-		<div class="square"></div>
-		<div class="square"></div>
-		<div class="square"></div>
-		<div class="square"></div>
-		<div class="square"></div>
-	</div>
-	
-</body>
-<script type="text/javascript" src="scorekeeper.js"></script>
-</html>
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 80
+      nodePort: 30007
+  type: NodePort

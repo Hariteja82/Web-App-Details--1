@@ -1,107 +1,95 @@
-#+----------------------------------------------------------------------------+
-#+ NGINX Configuration v1.0.0
-#+----------------------------------------------------------------------------+
-pcre_jit                                                on;
 
-timer_resolution 100ms;
-user nginx nginx;
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Elastic Beanstalk</title>
+    <style>
+      body {
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        font-size:14px;
+        -moz-transition-property: text-shadow;
+        -moz-transition-duration: 4s;
+        -webkit-transition-property: text-shadow;
+        -webkit-transition-duration: 4s;
+        text-shadow: none;
+      }
+      body.blurry {
+        -moz-transition-property: text-shadow;
+        -moz-transition-duration: 4s;
+        -webkit-transition-property: text-shadow;
+        -webkit-transition-duration: 4s;
+        text-shadow: #fff 0px 0px 25px;
+      }
+      a {
+        color: #55aaff;
+      }
+      .textColumn, .linksColumn {
+        padding: 2em;
+      }
+      .textColumn {
+        position: absolute;
+        top: 0px;
+        right: 50%;
+        bottom: 0px;
+        left: 0px;
 
-worker_priority -10;
-worker_processes 1;
-worker_rlimit_nofile 260000;
+        text-align: right;
+        padding-top: 11em;
+        background-color: #73A53E;
 
-events {
-    accept_mutex off;
-    accept_mutex_delay 200ms;
-    use epoll;
-    worker_connections 10000;
-}
+      }
+      .textColumn p {
+        width: 75%;
+        float:right;
+      }
+      .linksColumn {
+        position: absolute;
+        top:0px;
+        right: 0px;
+        bottom: 0px;
+        left: 50%;
 
+        background-color: #33342D;
+      }
 
-http {
-    #+------------------------------------------------------------------------+
-    #+ Enable Brotli
-    #+------------------------------------------------------------------------+
-    brotli on;
-    brotli_static on;
-    brotli_min_length 1000;
-    brotli_buffers 32 8k;
-    brotli_comp_level 5;
-    brotli_types *;
-
-    #+------------------------------------------------------------------------+
-    #+ client_max_body_size controls the maximum file upload size - this will
-    #+ need to be modified should you need to allow file uploads over 50MB.
-    #+------------------------------------------------------------------------+
-    client_body_buffer_size 256k;
-    client_body_in_file_only off;
-    client_body_timeout 10s;
-    client_header_buffer_size 64k;
-    client_header_timeout 5s;
-    client_max_body_size 50m;
-
-    charset utf-8;
-    connection_pool_size 512;
-    default_type application/octet-stream;
-    directio 4m;
-
-    #+------------------------------------------------------------------------+
-    #+ Enable GZIP
-    #+------------------------------------------------------------------------+
-    gzip on;
-    gzip_vary on;
-    gzip_disable "MSIE [1-6]\.";
-    gzip_static on;
-    gzip_min_length 1400;
-    gzip_buffers 32 8k;
-    gzip_http_version 1.0;
-    gzip_comp_level 5;
-    gzip_proxied any;
-    gzip_types text/plain text/css text/xml application/javascript application/x-javascript application/xml application/xml+rss application/ecmascript application/json image/svg+xml;
-
-    ignore_invalid_headers on;
-    include /etc/nginx/config/mime.types;
-    index index.php index.html;
-
-    keepalive_disable msie6;
-    keepalive_requests 500;
-    keepalive_timeout 5;
-
-    large_client_header_buffers 8 64k;
-    lingering_time 20s;
-    lingering_timeout 5s;
-
-    map_hash_bucket_size 128;
-    map_hash_max_size 4096;
-
-    open_file_cache max=50000 inactive=60s;
-    open_file_cache_errors off;
-    open_file_cache_min_uses 2;
-    open_file_cache_valid 120s;
-    open_log_file_cache max=10000 inactive=30s min_uses=2;
-
-    output_buffers 8 256k;
-    postpone_output 1460;
-
-    proxy_temp_path /etc/nginx/cache/proxy;
-
-    request_pool_size 32k;
-    reset_timedout_connection on;
-    sendfile on;
-    sendfile_max_chunk 512k;
-    send_timeout 10s;
-
-    server_names_hash_bucket_size 128;
-    server_names_hash_max_size 2048;
-    server_name_in_redirect off;
-
-    server_tokens off;
-
-    tcp_nodelay on;
-    tcp_nopush on;
-
-    types_hash_max_size 2048;
-    variables_hash_max_size 2048;
-
-    include /etc/nginx/sites/*.conf;
-}
+      h1 {
+        color: #33342D;
+        font-size: 500%;
+        font-weight: normal;
+        margin-bottom: 0em;
+      }
+      h2 {
+        font-size: 200%;
+        font-weight: normal;
+        margin-bottom: 0em;
+      }
+      ul {
+        padding-left: 1em;
+        margin: 0px;
+      }
+      li {
+        margin: 1em 0em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="textColumn">
+      <h1>Congratulations</h1>
+      <p>Your first AWS Elastic Beanstalk Node.js application is now running on your own dedicated environment in the AWS Cloud</p>
+      <p>This environment is launched with Elastic Beanstalk Node.js Platform</p>
+    </div>
+    <div class="linksColumn">
+      <h2>What's Next?</h2>
+      <ul>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html">AWS Elastic Beanstalk overview</a></li>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/concepts.html">AWS Elastic Beanstalk concepts</a></li>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express.html">Deploy an Express Application to AWS Elastic Beanstalk</a></li>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_express_elasticache.html">Deploy an Express Application with Amazon ElastiCache to AWS Elastic Beanstalk</a></li>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_geddy_elasticache.html">Deploy a Geddy Application with Amazon ElastiCache to AWS Elastic Beanstalk </a></li>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_nodejs_custom_container.html">Customizing and Configuring a Node.js Container </a></li>
+        <li><a href="http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/using-features.loggingS3.title.html">Working with Logs</a></li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,25 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>in.javahome</groupId>
-	<artifactId>myweb</artifactId>
-	<packaging>war</packaging>
-	<version>8.4.7</version>
-	<name>Java Home myweb</name>
-	<url>http://maven.apache.org</url>
+<html>
+<body>
+	<h1 style="color: violet; font-size: 45px;" align="center">HEY WE DEPLOYED OUR APP USING JENKINS</h1>
+
+
+	<h1 style="color: red; font-size: 40px;" align="center">THIS IS THE FAST VERSION OF OUR APP</h1>
 	
-	<properties>
-		<docker.image.prefix>kammana</docker.image.prefix>
-		<sonar.host.url>http://18.181.164.81:9000/</sonar.host.url>
-
-	</properties>
-	<dependencies>
-
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+	
+	
+	
+	
+	
+</body>
+</html>	<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
 

@@ -10,6 +10,8 @@
 	
 	<h1 style="color: Red; font-size: 40px;" align="center">Welcome to my webclass</h1>
 	
+	<h1 style="color: black; font-size: 48px;" align="center">THIS IS THE FAST VERSION OF OUR APP</h1>
+	
 	
 	
 	
